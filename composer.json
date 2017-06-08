@@ -1,0 +1,17 @@
+{
+    "name": "jmoati/paginator-bundle",
+    "type": "symfony-bundle",
+    "description": "Paginator for querybuilder",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Jacques Moati",
+            "email": "jacques@moati.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jmoati\\PaginatorBundle\\": "src/"
+        }
+    }
+}
