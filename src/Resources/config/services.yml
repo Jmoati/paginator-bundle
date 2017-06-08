@@ -1,0 +1,3 @@
+services:
+  Jmoati\PaginatorBundle\Service\PaginatorService:
+    class: Jmoati\PaginatorBundle\Service\PaginatorService

@@ -1,0 +1,17 @@
+{
+    "name": "jmoati/paginator-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jacques Moati",
+            "email": "jacques@moati.net"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Jmoati\\PaginatorBundle\\": "src/"
+        }
+    }
+}
