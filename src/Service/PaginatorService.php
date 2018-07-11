@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Jmoati\PaginatorBundle\Service;
 
+use Doctrine\ORM\Query\Expr\OrderBy;
 use Doctrine\ORM\QueryBuilder;
 
 class PaginatorService
@@ -29,10 +30,19 @@ class PaginatorService
     protected function getIds(QueryBuilder $queryBuilder, int $offset, int $limit): array
     {
         $qb = clone $queryBuilder;
+
         $qb
             ->select('DISTINCT '.$qb->getRootAliases()[0].'.id')
             ->setFirstResult($offset)
             ->setMaxResults($limit);
+
+        /** @var OrderBy $orderBy */
+        foreach($qb->getDQLPart('orderBy') as $orderBy) {
+            foreach($orderBy->getParts() as $part) {
+                $part = explode(" ", $part)[0];
+                $qb->addSelect($part);
+            }
+        }
 
         return array_column($qb->getQuery()->getResult(), 'id');
     }
