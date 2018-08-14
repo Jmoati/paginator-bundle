@@ -72,10 +72,18 @@ class PaginatorService
     public function paginate(QueryBuilder $queryBuilder, int $page = 1, int $limit = 10): array
     {
         $offset = ($page-1) * $limit;
+        $total = $this->getCount($queryBuilder);
 
         return [
-            'total' => $this->getCount($queryBuilder),
             'items' => $this->getItems($queryBuilder, $this->getIds($queryBuilder, $offset, $limit)),
+            'pagination' => [
+                'total' => $total,
+                'page' => [
+                    'current' => $page,
+                    'total' => floor($total / $limit) + 1,
+                ]
+
+            ]
         ];
     }
 }
